@@ -1,53 +1,46 @@
+package frc.robot.commands;
 
-package frc.robot.commands; 
-
-import edu.wpi.first.wpilibj2.command.CommandBase; 
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.subsystems.Drivetrain;
 
-public class DefaultDrive extends CommandBase
-{
+public class DefaultDrive extends CommandBase {
 
-    private Drivetrain drivetrain;
-    private CommandXboxController controller;
+    private final Drivetrain m_drivetrain;
+    private final CommandXboxController m_controller;
 
-    double forwardSpeed;
-    double rearSpeed;
-    double turnVal;
-
-    public DefaultDrive(Drivetrain paramDrivetrain, CommandXboxController paramController)
-    {
-
-        drivetrain = paramDrivetrain;
-        controller = paramController;
-
+    /**
+     * Default drive command
+     * 
+     * Controller:
+     * - right trigger: accelerate
+     * - left trigger: decelerate / backwards
+     * - left stick: turning
+     * 
+     * @param drivetrain
+     * @param controller
+     */
+    public DefaultDrive(Drivetrain drivetrain, CommandXboxController controller) {
+        // Use addRequirements() here to declare subsystem dependencies.
         addRequirements(drivetrain);
-        
+
+        m_drivetrain = drivetrain;
+        m_controller = controller;
     }
 
+    // Called every time the scheduler runs while the command is scheduled.
     @Override
-    public void initialize() {}
+    public void execute() {
+        double xSpeed = m_controller.getRightTriggerAxis() - m_controller.getLeftTriggerAxis();
+        double zRotation = -m_controller.getLeftX();
 
-    @Override
-    public void execute()
-    {
-
-        // LT forward, RT rear, LSB turnval
-        forwardSpeed = controller.getLeftTriggerAxis();
-        rearSpeed = controller.getRightTriggerAxis();
-        turnVal = controller.getLeftX();
-
-        drivetrain.arcadeDrive(forwardSpeed - rearSpeed, turnVal);
-
+        m_drivetrain.arcadeDrive(xSpeed, zRotation);
     }
 
+    // Returns true when the command should end.
     @Override
-    public void end(boolean interrupted) {}
-
-
-    @Override
-    public boolean isFinished()
-    {
+    public boolean isFinished() {
         return false;
     }
+
 }
