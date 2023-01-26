@@ -30,13 +30,13 @@ public final class Constants
     public static class kMotor
     {
 
-      public static final int kIdLeft1 = 20;
-      public static final int kIdLeft2 = 21;
-      public static final int kIdLeft3 = 22;
+      public static final int kIdLeft1 = 0;
+      public static final int kIdLeft2 = 1;
+      public static final int kIdLeft3 = 2;
 
-      public static final int kIdRight1 = 23;
-      public static final int kIdRight2 = 24;
-      public static final int kIdRight3 = 25;
+      public static final int kIdRight1 = 3;
+      public static final int kIdRight2 = 4;
+      public static final int kIdRight3 = 5;
 
     }
 
