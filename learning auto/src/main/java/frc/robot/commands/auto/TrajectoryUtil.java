@@ -4,7 +4,6 @@
 
 package frc.robot.commands.auto;
 
-import java.io.IOException;
 import java.nio.file.Path;
 
 import edu.wpi.first.math.trajectory.Trajectory;
@@ -23,12 +22,8 @@ Trajectory trajectory = new Trajectory();
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    try {
-      Path trajectoryPath = Filesystem.getDeployDirectory().toPath().resolve(trajectoryJSON);
-      trajectory = TrajectoryUtil.fromPathweaverJson(trajectoryPath);
-  } catch (IOException ex) {
-      DriverStation.reportError("Unable to open trajectory: " + trajectoryJSON, ex.getStackTrace());
-  }
+    Path trajectoryPath = Filesystem.getDeployDirectory().toPath().resolve(trajectoryJSON);
+    trajectory = TrajectoryUtil.fromPathweaverJson(trajectoryPath);
   }
 
   private static Trajectory fromPathweaverJson(Path trajectoryPath) {
