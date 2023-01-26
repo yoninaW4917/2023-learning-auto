@@ -1,0 +1,14 @@
+{
+  "NTProvider": {
+    "types": {
+      "/FMSInfo": "FMSInfo"
+    }
+  },
+  "Plot": {
+    "Plot <0>": {
+      "window": {
+        "visible": false
+      }
+    }
+  }
+}
