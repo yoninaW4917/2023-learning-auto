@@ -29,7 +29,7 @@ Trajectory trajectory = new Trajectory();
   private static Trajectory fromPathweaverJson(Path trajectoryPath) {
     return null;
   }
-
+ 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {}
